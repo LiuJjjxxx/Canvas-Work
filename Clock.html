@@ -17,7 +17,8 @@
 	var cxt = canvas.getContext("2d");
 	boder();
 	setTimerList();
-	setInterval(setTimerhand(),100);
+	setTimerhand();
+	
 	
 	//-- 圆心
 	function middle(){
@@ -52,7 +53,7 @@
 	//-- 设置指针时针
 	function setTimerhand(){
 		var now = new Date();
-		var [min,hour]=[now.getMinutes(),now.getHours()];
+		var [sec,min,hour]=[now.getSeconds(),now.getMinutes(),now.getHours()];
 		hour>12?hour - 12 : hour;
 		hour+=(min/60);
 		cxt.lineWidth= 7;
@@ -68,6 +69,14 @@
 		cxt.restore();
 		//分针
 		cxt.rotate(min*6*Math.PI/180);
+		cxt.beginPath();
+		cxt.moveTo(0,-130);
+		cxt.lineTo(0,10);
+		cxt.stroke();
+		cxt.closePath();
+		cxt.restore();
+		//秒针
+		cxt.rotate(sec*6*Math.PI/180);
 		cxt.beginPath();
 		cxt.moveTo(0,-130);
 		cxt.lineTo(0,10);
